@@ -1,20 +1,13 @@
 class Plantpower::CLI
 
   def call
+    puts
     puts "Welcome to the McDougall recipe collection"
     display_categories
 
-    choice = gets.chomp
-#NEED to test that entry is a number AND it is valid option
-    category = int_test
-
-    display_choices(category)
-    puts "Which recipe would you like to see?"
-#HOW TO TEST if entry is a number?
-    recipe = gets.chomp.to_i
 
   end
-end
+
 #HOW DO I PASS THIS VALUE BACK TO USE THIS TEST FOR MULTIPLE USER INPUTS?
   def int_test?(choice)
     begin
@@ -42,7 +35,7 @@ end
     print "> "
     choice = gets.chomp
 
-      if int_test?(choice) && choice.to_i < length
+      if int_test?(choice) && choice.to_i < length && choice.to_i > 0
         # && choice.to_i < categories.length  >>> add this to above statement to check that number selected is an option
         display_choices(choice)
       else
@@ -61,19 +54,35 @@ end
       puts "~~~~~~~~~~ BEVERAGES ~~~~~~~~~~"
       puts "1. smoothie"
       puts "2. ice tea"
+      puts
     when '2'
       puts "~~~~~~~~~~ BREAKFAST ~~~~~~~~~~"
       puts "1. oatmeal"
       puts "2. pancakes"
+      puts
     when '3'
       puts "~~~~~~~~~~ LUNCH ~~~~~~~~~~"
       puts "1. mac n cheese"
       puts "2. mashed potatos and broccoli"
+      puts
     when '4'
       puts "~~~~~~~~~~ DINNER ~~~~~~~~~~"
       puts "1. Shepards pie"
       puts "2. Lentil loaf"
+      puts
+      # puts "Which recipe would you like to see?"
+      # print "> "
+      # recipe = gets.chomp
+      # if int_test?(recipe) && recipe.to_i > 0 && recipe.to_i < length
+      #   show_recipe("dinner", recipe)
+      # else puts "invalid entry. try again" cycle back to list dinner options and take input
     end
+
+    # puts "Which recipe would you like to see?"
+    # print "> "
+    # recipe = gets.chomp
+
+
   end
 
 #type = breakfast,dinner, etc.  NEED TO CHECK LENGTH OF list

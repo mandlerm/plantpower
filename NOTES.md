@@ -26,3 +26,5 @@ What does a recipe have?
 DECISIONS:
 ask questions in call?  or in method?
    ie. within display_categories
+
+Measure LENGTH of list to ensure integer entry is acceptable
