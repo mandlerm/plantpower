@@ -16,22 +16,20 @@ class Plantpower::CLI
   end
 end
 #HOW DO I PASS THIS VALUE BACK TO USE THIS TEST FOR MULTIPLE USER INPUTS?
-  def int_test(choice)
+  def int_test?(choice)
     begin
-      choice = gets.chomp
-      food = Integer(choice)
+      Integer(choice)
+      true
     rescue
-      print "Please enter an valid number:"
-      retry
-      food
-      binding.pry
+      false
     end
   end
 
 
-
+#STILL DOESN"T CHECK IF NUMBER IS AN OPTION -- NEED categories.length
   def display_categories
     #prints out categories in numbered list
+    length = 4
     puts
     puts "************* Recipe Categories *************"
     puts
@@ -40,13 +38,23 @@ end
     puts "3. lunch"
     puts "4. dinner"
     puts
-    puts "Which recipe category would you like to see?"
+    puts "Enter the number for which recipe category would you like to see?"
+    print "> "
     choice = gets.chomp
-    selection = int_test(choice)
+
+      if int_test?(choice) && choice.to_i < length
+        # && choice.to_i < categories.length  >>> add this to above statement to check that number selected is an option
+        display_choices(choice)
+      else
+        puts "^^^^^^^^^^^^^^"
+        puts "Not a valid selection.  Please try again."
+        display_categories
+      end
   end
 
   def display_choices(food)
     #case statements. if 1 --> display x
+    length = 2
     puts
     case food
     when '1'
@@ -66,8 +74,14 @@ end
       puts "1. Shepards pie"
       puts "2. Lentil loaf"
     end
+  end
 
-    def show_recipe
+#type = breakfast,dinner, etc.  NEED TO CHECK LENGTH OF list
+#selection = which # of that type
+# 1. confirm that selection is an Integer
+# 2. confirm that the integer is in the list of options for THAT category
+# 3. Display recipe information for that integer selection of that category
+    def show_recipe(type, selection)
       #display the recipe item chosed
       # puts "#{recipe.name}"
       # puts "#{recipe.time}   ------ #{recipe.servings}"
