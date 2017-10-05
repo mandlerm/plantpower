@@ -1,0 +1,6 @@
+require 'pry'
+require 'nokogiri'
+require 'open-uri'
+
+require_relative '../lib/plantpower/cli'
+require_relative './plantpower/version'

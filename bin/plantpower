@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require 'plantpower'
+
+
+PlantPower::CLI.new.call
+
+#
+
+#
+# puts "I am in plantpowered in the bin"
