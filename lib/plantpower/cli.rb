@@ -4,9 +4,6 @@ class Plantpower::CLI
     puts "Welcome to the McDougall recipe collection"
     display_categories
 
-    choice = gets.chomp
-#NEED to test that entry is a number AND it is valid option
-    category = int_test
 
     display_choices(category)
     puts "Which recipe would you like to see?"
@@ -14,17 +11,18 @@ class Plantpower::CLI
     recipe = gets.chomp.to_i
 
   end
-end
+
 #HOW DO I PASS THIS VALUE BACK TO USE THIS TEST FOR MULTIPLE USER INPUTS?
   def int_test(choice)
+    length = 4
     begin
-      choice = gets.chomp
-      food = Integer(choice)
-    rescue
-      print "Please enter an valid number:"
-      retry
-      food
-      binding.pry
+      if Integer(choice) && choice.to_i > 0 && choice.to_i < length
+        true
+      else
+        false
+      end
+      rescue
+      false
     end
   end
 
@@ -42,7 +40,11 @@ end
     puts
     puts "Which recipe category would you like to see?"
     choice = gets.chomp
-    selection = int_test(choice)
+    if !int_test(choice)
+      puts "^^^^^^^^^^^"
+      puts "That is not a valid selection. Please try again"
+      display_categories
+    end
   end
 
   def display_choices(food)
@@ -66,6 +68,7 @@ end
       puts "1. Shepards pie"
       puts "2. Lentil loaf"
     end
+  end
 
     def show_recipe
       #display the recipe item chosed
