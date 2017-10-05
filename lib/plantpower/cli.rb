@@ -4,12 +4,6 @@ class Plantpower::CLI
     puts "Welcome to the McDougall recipe collection"
     display_categories
 
-
-    display_choices(category)
-    puts "Which recipe would you like to see?"
-#HOW TO TEST if entry is a number?
-    recipe = gets.chomp.to_i
-
   end
 
 #HOW DO I PASS THIS VALUE BACK TO USE THIS TEST FOR MULTIPLE USER INPUTS?
@@ -45,6 +39,8 @@ class Plantpower::CLI
       puts "That is not a valid selection. Please try again"
       display_categories
     end
+    display_choices(choice)
+
   end
 
   def display_choices(food)
@@ -79,3 +75,6 @@ class Plantpower::CLI
       # puts "Bon Apetite"
     end
   end
+
+
+  testing commit
