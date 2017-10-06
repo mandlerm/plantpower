@@ -4,6 +4,15 @@ class Plantpower::CLI
     puts "Welcome to the McDougall recipe collection"
     display_categories
 
+    puts "Would you like to search for a new recipe? y/n \n"
+    print "> "
+    again = gets.chomp
+    if again.include?('n')
+      puts "**** Thanks for stopping by.  Bon Appetite. **** "
+      puts
+    else
+      call
+    end
   end
 
 #HOW DO I PASS THIS VALUE BACK TO USE THIS TEST FOR MULTIPLE USER INPUTS?
@@ -114,6 +123,7 @@ class Plantpower::CLI
 
     def show_recipe(type, number)
       puts "#{type} #{number}"
+      puts
       #display the recipe item chosed
       # puts "#{recipe.name}"
       # puts "#{recipe.time}   ------ #{recipe.servings}"
