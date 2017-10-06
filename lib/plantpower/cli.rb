@@ -52,14 +52,47 @@ class Plantpower::CLI
       puts "~~~~~~~~~~ BEVERAGES ~~~~~~~~~~"
       puts "1. smoothie"
       puts "2. ice tea"
+      puts
+      puts "Which recipe would you like to see?"
+      print "> "
+      choice = gets.chomp
+      if !int_test(choice)
+        puts "^^^^^^^^^^^"
+        puts "That is not a valid selection. Please try again"
+        display_choices(food)
+      else
+        show_recipe('beverage', choice)
+      end
     when '2'
       puts "~~~~~~~~~~ BREAKFAST ~~~~~~~~~~"
       puts "1. oatmeal"
       puts "2. pancakes"
+      puts
+      puts "Which recipe would you like to see?"
+      print "> "
+      choice = gets.chomp
+      if !int_test(choice)
+        puts "^^^^^^^^^^^"
+        puts "That is not a valid selection. Please try again"
+        display_choices(food)
+      else
+        show_recipe('breakfast', choice)
+      end
     when '3'
       puts "~~~~~~~~~~ LUNCH ~~~~~~~~~~"
       puts "1. mac n cheese"
       puts "2. mashed potatos and broccoli"
+      puts
+      puts "Which recipe would you like to see?"
+      print "> "
+      choice = gets.chomp
+      if !int_test(choice)
+        puts "^^^^^^^^^^^"
+        puts "That is not a valid selection. Please try again"
+        display_choices(food)
+      else
+        show_recipe('lunch', choice)
+      end
     when '4'
       puts "~~~~~~~~~~ DINNER ~~~~~~~~~~"
       puts "1. Shepards pie"
