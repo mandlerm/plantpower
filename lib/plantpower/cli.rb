@@ -112,7 +112,8 @@ class Plantpower::CLI
     end
   end
 
-    def show_recipe
+    def show_recipe(type, number)
+      puts "#{type} #{number}"
       #display the recipe item chosed
       # puts "#{recipe.name}"
       # puts "#{recipe.time}   ------ #{recipe.servings}"
