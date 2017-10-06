@@ -10,7 +10,7 @@ class Plantpower::CLI
   def int_test(choice)
     length = 4
     begin
-      if Integer(choice) && choice.to_i > 0 && choice.to_i < length
+      if Integer(choice) && choice.to_i > 0 && choice.to_i <= length
         true
       else
         false
@@ -33,6 +33,7 @@ class Plantpower::CLI
     puts "4. dinner"
     puts
     puts "Which recipe category would you like to see?"
+    print "> "
     choice = gets.chomp
     if !int_test(choice)
       puts "^^^^^^^^^^^"
@@ -63,6 +64,18 @@ class Plantpower::CLI
       puts "~~~~~~~~~~ DINNER ~~~~~~~~~~"
       puts "1. Shepards pie"
       puts "2. Lentil loaf"
+      puts
+      puts "Which recipe would you like to see?"
+      print "> "
+  #IS THIS A PLACE FOR A BLOCK?? YIELD
+      choice = gets.chomp
+      if !int_test(choice)
+        puts "^^^^^^^^^^^"
+        puts "That is not a valid selection. Please try again"
+        display_choices(food)
+      else
+        show_recipe('dinner', choice)
+      end
     end
   end
 
@@ -75,6 +88,3 @@ class Plantpower::CLI
       # puts "Bon Apetite"
     end
   end
-
-
-  testing commit
