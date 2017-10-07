@@ -9,4 +9,4 @@ Plantpower::CLI.new.call
 #
 
 #
-# puts "I am in plantpowered in the bin"
+puts "I am in plantpowered in the bin"
