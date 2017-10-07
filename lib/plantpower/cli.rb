@@ -48,11 +48,12 @@ class Plantpower::CLI
 
 
   def display_choices(food)
-
-    puts "~~~~~~~~~~ #{@first_level.keys[food.to_i]} ~~~~~~~~~~"
-
-    second_level = Scraper.scrape_category_page('https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes/?cat-id=4&cat-name=Appetizers')
+    food = food.to_i
+    key = @first_level.keys[food]
+    second_level = Scraper.scrape_category_page("#{MAIN_PAGE}/#{@first_level[key]}")
     length = second_level.length
+    puts "~~~~~~~~~~ #{@first_level.keys[food]} ~~~~~~~~~~"
+
 binding.pry
     case food
     when '1'
