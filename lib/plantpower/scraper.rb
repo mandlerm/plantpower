@@ -1,30 +1,16 @@
 class Scraper
 
   def self.scrape_index_page(index_url)
-    collection = []
-    categories = {}
+    links = []
     html = open(index_url)
     mcdougall = Nokogiri::HTML(html)
-
-    # category = mcdougall.css(".break_ul li a").children.text
-    # binding.pry
-    # link_extension = mcdougall.css(".break_ul li a").attribute('href')
-    # category.split("\r\n").each do |cat|
-    #   categories << cat
-    # end
 
     category = mcdougall.css(".break_ul li a").children.text
     category = category.split("\r\n")
     category.shift
     link = mcdougall.css(".break_ul li a")
-    binding.pry
-    category.each do |cat|
-      link.each do |link|
-        binding.pry
-        collection << {cat => link.attribute('href').value}
-      end
-    end
-
+    link.each { |l| links << l.attribute('href').value}
+    first_level = Hash[category.zip(links)]
   end
 end
 
