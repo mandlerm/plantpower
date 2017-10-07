@@ -33,7 +33,6 @@ class Plantpower::CLI
       puts "#{index + 1}. #{item[0]}"
     end
 
-
     puts "Enter the number for which recipe category would you like to see?"
     print "> "
     choice = gets.chomp
@@ -47,6 +46,8 @@ class Plantpower::CLI
 
 
   def display_choices(food)
+    second_level = Scraper.scrape_category_page('https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes/?cat-id=4&cat-name=Appetizers')
+binding.pry
     case food
     when '1'
       puts "~~~~~~~~~~ BEVERAGES ~~~~~~~~~~"
