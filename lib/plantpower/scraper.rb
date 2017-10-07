@@ -4,15 +4,13 @@ class Scraper
     categories = []
     html = open('https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes')
     mcdougall = Nokogiri::HTML(html)
-
+binding.pry
     category = mcdougall.css(".break_ul li a").children.text
     category.split("\r\n").each do |cat|
       categories << cat
     end
-binding.pry
-  end
 
-binding.pry
+  end
 end
 
 

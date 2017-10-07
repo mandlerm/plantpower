@@ -48,16 +48,12 @@ class Plantpower::CLI
 
 
   def display_choices(food)
-    #case statements. if 1 --> display x
-    length = 2
-    puts
     case food
     when '1'
       puts "~~~~~~~~~~ BEVERAGES ~~~~~~~~~~"
       puts "1. smoothie"
       puts "2. ice tea"
       puts
-
       puts "Which recipe would you like to see?"
       print "> "
       choice = gets.chomp
@@ -98,32 +94,27 @@ class Plantpower::CLI
       else
         show_recipe('lunch', choice)
       end
-    when '4'
-      puts "~~~~~~~~~~ DINNER ~~~~~~~~~~"
-      puts "1. Shepards pie"
-      puts "2. Lentil loaf"
-      puts
-      puts "Which recipe would you like to see?"
-      print "> "
-      recipe = gets.chomp
-      puts "Which recipe would you like to see?"
-      print "> "
-  #IS THIS A PLACE FOR A BLOCK?? YIELD
-      choice = gets.chomp
-      if !int_test(choice)
-        puts "^^^^^^^^^^^"
-        puts "That is not a valid selection. Please try again"
-        display_choices(food)
-      else
-        show_recipe('dinner', choice)
-      end
-
-    end
+  #   when '4'
+  #     puts "~~~~~~~~~~ DINNER ~~~~~~~~~~"
+  #     puts "1. Shepards pie"
+  #     puts "2. Lentil loaf"
+  #     puts
+  #     puts "Which recipe would you like to see?"
+  #     print "> "
+  #     recipe = gets.chomp
+  #     puts "Which recipe would you like to see?"
+  #     print "> "
+  # #IS THIS A PLACE FOR A BLOCK?? YIELD
+  #     choice = gets.chomp
+  #     if !int_test(choice)
+  #       puts "^^^^^^^^^^^"
+  #       puts "That is not a valid selection. Please try again"
+  #       display_choices(food)
+  #     else
+  #       show_recipe('dinner', choice)
+  #     end
+  #   end
   end
-
-    # puts "Which recipe would you like to see?"
-    # print "> "
-    # recipe = gets.chomp
   end
 
 #type = breakfast,dinner, etc.  NEED TO CHECK LENGTH OF list
@@ -131,15 +122,17 @@ class Plantpower::CLI
 # 1. confirm that selection is an Integer
 # 2. confirm that the integer is in the list of options for THAT category
 # 3. Display recipe information for that integer selection of that category
-    def show_recipe(type, number)
-      puts "#{type} #{number}"
-      puts
 
-      #display the recipe item chosed
-      # puts "#{recipe.name}"
-      # puts "#{recipe.time}   ------ #{recipe.servings}"
-      # puts "#{recipe.instruction}"
-      # puts
-      # puts "Bon Apetite"
-    end
+
+  def show_recipe(type, number)
+    puts "#{type} #{number}"
+    puts
+
+    #display the recipe item chosed
+    # puts "#{recipe.name}"
+    # puts "#{recipe.time}   ------ #{recipe.servings}"
+    # puts "#{recipe.instruction}"
+    # puts
+    # puts "Bon Apetite"
   end
+end
