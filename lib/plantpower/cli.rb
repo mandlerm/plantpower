@@ -1,6 +1,8 @@
 class Plantpower::CLI
   MAIN_PAGE = "https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes"
 
+  @first_level
+
   def call
     puts
     puts "Welcome to the McDougall recipe collection"
@@ -24,12 +26,12 @@ class Plantpower::CLI
 
 #STILL DOESN"T CHECK IF NUMBER IS AN OPTION -- NEED categories.length
   def display_categories
-    first_level = Scraper.scrape_index_page(MAIN_PAGE)
+    @first_level = Scraper.scrape_index_page(MAIN_PAGE)
 
 #why is there a leading index of " " ????  What to do about that?
-    length = first_level.length
+    length = @first_level.length
     puts "************* Recipe Categories *************"
-    first_level.each_with_index do |item, index|
+    @first_level.each_with_index do |item, index|
       puts "#{index + 1}. #{item[0]}"
     end
 
@@ -47,6 +49,7 @@ class Plantpower::CLI
 
   def display_choices(food)
 
+    puts "~~~~~~~~~~ #{@first_level.keys[food.to_i]} ~~~~~~~~~~"
 
     second_level = Scraper.scrape_category_page('https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes/?cat-id=4&cat-name=Appetizers')
     length = second_level.length
