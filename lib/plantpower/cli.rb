@@ -49,10 +49,11 @@ class Plantpower::CLI
 
   def display_choices(food)
     food = food.to_i
-    key = @first_level.keys[food]
+    key = @first_level.keys[food -1 ]
+
     second_level = Scraper.scrape_category_page("#{MAIN_PAGE}/#{@first_level[key]}")
     length = second_level.length
-    puts "~~~~~~~~~~ #{@first_level.keys[food]} ~~~~~~~~~~"
+    puts "~~~~~~~~~~ #{key} ~~~~~~~~~~"
 
     second_level.each_with_index do |items, index|
       puts "#{index + 1}. #{items[0]}"
