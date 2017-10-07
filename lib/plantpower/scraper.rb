@@ -26,9 +26,10 @@ class Scraper
     list.each { |l| links << l.attribute('href').value}
     second_level = Hash[item_list.zip(links)]
     second_level
-
   end
 
+  def self.scrape_recipe(url)
+  end
 end
 
 #https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes/

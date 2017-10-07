@@ -58,14 +58,17 @@ class Plantpower::CLI
     second_level.each_with_index do |items, index|
       puts "#{index + 1}. #{items[0]}"
     end
-
+    puts
+    puts "Which recipe would you like to see?"
+    print "> "
     choice  = gets.chomp
     if !int_test(choice, length)
       puts "^^^^^^^^^^^"
       puts "That is not a valid selection. Please try again"
       display_choices(food)
     else
-      puts "moving on"
+      binding.pry
+      extension = second_level[choice]
     end
   end
 
