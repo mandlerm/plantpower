@@ -24,16 +24,16 @@ class Plantpower::CLI
 
 #STILL DOESN"T CHECK IF NUMBER IS AN OPTION -- NEED categories.length
   def display_categories
-    #prints out categories in numbered list
-    length = 4
-    puts
+    list = Scraper.scrape_index_page('https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes')
+
+
+#why is there a leading index of " " ????  What to do about that?
+    length = list.length
     puts "************* Recipe Categories *************"
-    puts
-    puts "1. beverages"
-    puts "2. breakfast"
-    puts "3. lunch"
-    puts "4. dinner"
-    puts
+    list.each_with_index do |item, index|
+      puts "#{index + 1}. #{item}"
+    end
+
 
     puts "Enter the number for which recipe category would you like to see?"
     print "> "

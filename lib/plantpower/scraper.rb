@@ -2,9 +2,8 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     categories = []
-    html = open('https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes')
+    html = open(index_url)
     mcdougall = Nokogiri::HTML(html)
-binding.pry
     category = mcdougall.css(".break_ul li a").children.text
     category.split("\r\n").each do |cat|
       categories << cat
