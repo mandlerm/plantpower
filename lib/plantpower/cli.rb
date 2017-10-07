@@ -24,12 +24,12 @@ class Plantpower::CLI
 
 #STILL DOESN"T CHECK IF NUMBER IS AN OPTION -- NEED categories.length
   def display_categories
-    list = Scraper.scrape_index_page(MAIN_PAGE)
+    first_level = Scraper.scrape_index_page(MAIN_PAGE)
 
 #why is there a leading index of " " ????  What to do about that?
-    length = list.length
+    length = first_level.length
     puts "************* Recipe Categories *************"
-    list.each_with_index do |item, index|
+    first_level.each_with_index do |item, index|
       puts "#{index + 1}. #{item[0]}"
     end
 
@@ -46,7 +46,10 @@ class Plantpower::CLI
 
 
   def display_choices(food)
+
+
     second_level = Scraper.scrape_category_page('https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes/?cat-id=4&cat-name=Appetizers')
+    length = second_level.length
 binding.pry
     case food
     when '1'
