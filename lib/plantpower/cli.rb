@@ -9,8 +9,7 @@ class Plantpower::CLI
 
 
 #HOW DO I PASS THIS VALUE BACK TO USE THIS TEST FOR MULTIPLE USER INPUTS?
-  def int_test(choice)
-    length = 4
+  def int_test(choice, length)
     begin
       if Integer(choice) && choice.to_i > 0 && choice.to_i <= length
         true
@@ -27,19 +26,18 @@ class Plantpower::CLI
   def display_categories
     list = Scraper.scrape_index_page(MAIN_PAGE)
 
-
 #why is there a leading index of " " ????  What to do about that?
     length = list.length
     puts "************* Recipe Categories *************"
     list.each_with_index do |item, index|
-      puts "#{index + 1}. #{item}"
+      puts "#{index + 1}. #{item[0]}"
     end
 
 
     puts "Enter the number for which recipe category would you like to see?"
     print "> "
     choice = gets.chomp
-    if !int_test(choice)
+    if !int_test(choice, length)
           puts "^^^^^^^^^^^"
           puts "That is not a valid selection. Please try again"
           display_categories
