@@ -54,7 +54,11 @@ class Plantpower::CLI
     length = second_level.length
     puts "~~~~~~~~~~ #{@first_level.keys[food]} ~~~~~~~~~~"
 
-binding.pry
+    second_level.each_with_index do |items, index|
+      puts "#{index + 1}. #{items[0]}"
+    end
+
+
     case food
     when '1'
       puts "~~~~~~~~~~ BEVERAGES ~~~~~~~~~~"
