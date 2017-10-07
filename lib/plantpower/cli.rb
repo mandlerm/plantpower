@@ -1,4 +1,5 @@
 class Plantpower::CLI
+  MAIN_PAGE = "https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes"
 
   def call
     puts
@@ -24,7 +25,7 @@ class Plantpower::CLI
 
 #STILL DOESN"T CHECK IF NUMBER IS AN OPTION -- NEED categories.length
   def display_categories
-    list = Scraper.scrape_index_page('https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes')
+    list = Scraper.scrape_index_page(MAIN_PAGE)
 
 
 #why is there a leading index of " " ????  What to do about that?
