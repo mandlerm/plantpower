@@ -85,10 +85,28 @@ class Plantpower::CLI
 
     recipe = Scraper.scrape_recipe("#{MAIN_PAGE}/#{url}")
 
+    puts "~~~~~~~~~~ #{recipe[:name]} ~~~~~~~~~~"
+    puts
+    puts recipe[:prep]
+    puts
+    puts "----------- INGREDIENTS ----------- "
+    puts recipe[:ingredients]
+    puts
+    puts "********** DIRECTIONS **********"
+    puts recipe[:instructions]
+    puts
+    puts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+    puts "Would you like to search for another recipe? y/n"
+    answer = gets.chomp
+    if answer.include?('y' || 'Y')
+      Plantpower::CLI.new.call
+    else
+      puts
+      puts "Bon Appétit"
+      puts
+    end
   end
-
-
-    # puts
-    # puts "Bon Apetite"
 
 end

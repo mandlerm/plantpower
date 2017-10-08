@@ -33,8 +33,6 @@ class Scraper
     list_item = Nokogiri::HTML(html)
 
     recipe = {}
-    binding.pry
-
     recipe[:name] = list_item.css("h2.rep-egg").children.text
     recipe[:prep] = list_item.css("h4.item_para").text
     recipe[:ingredients] = list_item.css(".ingred-item").text
@@ -43,7 +41,7 @@ class Scraper
 #list_item.css(".ingred")  each li class ingred-item
 #list_item.css(".ingred-item")
 #list_item.css(".directions").text  each br segment
-
+    recipe
   end
 end
 
