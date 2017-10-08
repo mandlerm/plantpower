@@ -22,7 +22,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Welcome to the McDougall Recipe Collection.  We have provided recipe information found at Dr. McDougall's searchable recipe page (https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes/)
+
+You will be provided with a list of recipe categories.  Select which category you want to explore by entering the associated list number.
+
+You will then see a list of all recipes in that category.  Once again, enter the list number of the desired recipe, and you will see the recipe listing: prep time, ingredients list and directions for preparation.
+
+I hope you find this a helpful resource.
 
 ## Development
 
@@ -38,4 +44,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/'amaya
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
