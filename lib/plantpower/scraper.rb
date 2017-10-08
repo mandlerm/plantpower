@@ -60,7 +60,7 @@ class Plantpower::Scraper
     recipe_name.instructions = instr
 
     recipe_name.url = url
-binding.pry
+    recipe_name
     # recipe_name.save
     # recipe
   end

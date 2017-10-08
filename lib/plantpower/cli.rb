@@ -71,11 +71,11 @@ class Plantpower::CLI
     end
   end
 
-  def show_recipe(recipe_name, url)
+  def show_recipe(name, url)
 
-    Plantpower::Scraper.scrape_recipe(recipe_name, "#{MAIN_PAGE}/#{url}")
+    recipe_name = Plantpower::Scraper.scrape_recipe(name, "#{MAIN_PAGE}/#{url}")
     # recipe = Scraper.scrape_recipe("#{MAIN_PAGE}/#{url}")
-binding.pry
+
     puts "~~~~~~~~~~ #{recipe_name.name} ~~~~~~~~~~"
     puts
     puts recipe_name.prep
