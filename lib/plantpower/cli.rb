@@ -38,7 +38,9 @@ class Plantpower::CLI
     puts "Enter the number for which category of recipes would you like to see?"
     print "> "
     choice = gets.chomp
-    if !int_test(choice, length)
+    if choice.include?("exit") || choice.include?("q")
+      goodbye
+    elsif !int_test(choice, length)
           puts "^^^^^^^^^^^"
           puts "That is not a valid selection. Please try again"
           display_categories
@@ -62,7 +64,9 @@ class Plantpower::CLI
     puts "Which recipe would you like to see?"
     print "> "
     choice  = gets.chomp
-    if !int_test(choice, length)
+    if choice.include?("exit") || choice.include?("q")
+      goodbye
+    elsif !int_test(choice, length)
       puts "^^^^^^^^^^^"
       puts "That is not a valid selection. Please try again"
       display_choices(food)
@@ -72,14 +76,6 @@ class Plantpower::CLI
       show_recipe(recipe_name, extension)
     end
   end
-
-
-#type = breakfast,dinner, etc.  NEED TO CHECK LENGTH OF list
-#selection = which # of that type
-# 1. confirm that selection is an Integer
-# 2. confirm that the integer is in the list of options for THAT category
-# 3. Display recipe information for that integer selection of that category
-
 
   def show_recipe(recipe_name, url)
 
@@ -96,19 +92,22 @@ class Plantpower::CLI
     puts recipe[:instructions]
     puts
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    puts "See more at #{MAIN_PAGE}/#{url}"
-
-
+    puts "See more at:"
+    puts "#{MAIN_PAGE}/#{url}"
+    puts
     puts "Would you like to search for another recipe?"
     print "> "
     answer = gets.chomp
     if answer.include?('y' || 'Y')
       Plantpower::CLI.new.call
     else
-      puts
-      puts "Bon Appétit"
-      puts
+      goodbye
     end
   end
 
+  def goodbye
+    puts
+    abort("Bon Appétit")
+    puts
+  end
 end
