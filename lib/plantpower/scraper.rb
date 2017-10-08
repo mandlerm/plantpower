@@ -33,21 +33,18 @@ class Scraper
     list_item = Nokogiri::HTML(html)
 
     recipe = {}
+    ingred = []
+    instr = []
+
     recipe[:name] = list_item.css("h2.rep-egg").children.text
     recipe[:prep] = list_item.css("h4.item_para").text
-    recipe[:ingredients] = list_item.css(".ingred-item").text
-    recipe[:instructions] = list_item.css(".directions")
 
-#list_item.css(".ingred")  each li class ingred-item
-#list_item.css(".ingred-item")
-#list_item.css(".directions").text  each br segment
+    list_item.css(".ingred").each { |l| ingred << l.text }
+    recipe[:ingredients] = ingred
+
+    list_item.css(".directions").each {|i| instr << i.text}
+    recipe[:instructions] = instr
+
     recipe
   end
 end
-
-#display the recipe item chosed
-# puts "#{recipe.name}"
-# puts "#{recipe.time}   ------ #{recipe.servings}"
-# puts "#{recipe.instruction}"
-
-#https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes/

@@ -5,7 +5,7 @@ class Plantpower::CLI
 
   def call
     puts
-    puts "Welcome to the McDougall recipe collection"
+    puts "Welcome to the McDougall Recipe Collection"
     display_categories
   end
 
@@ -34,7 +34,7 @@ class Plantpower::CLI
     @first_level.each_with_index do |item, index|
       puts "#{index + 1}. #{item[0]}"
     end
-
+    puts
     puts "Enter the number for which category of recipes would you like to see?"
     print "> "
     choice = gets.chomp
@@ -92,13 +92,15 @@ class Plantpower::CLI
     puts "----------- INGREDIENTS ----------- "
     puts recipe[:ingredients]
     puts
-    puts "********** DIRECTIONS **********"
+    puts "*************************"
     puts recipe[:instructions]
     puts
-    puts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts "See more at #{MAIN_PAGE}/#{url}"
 
 
-    puts "Would you like to search for another recipe? y/n"
+    puts "Would you like to search for another recipe?"
+    print "> "
     answer = gets.chomp
     if answer.include?('y' || 'Y')
       Plantpower::CLI.new.call
