@@ -1,11 +1,24 @@
-class Scraper
+class Plantpower::Scraper
+
+  def get_page
+    Nokogiri::HTML(open("https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes"))
+  end
+
+  def scrape_index_page
+    self.get_page.css(".break_ul li a").children.text
+  end
+
+  def make_recipes
+    scrape_index_page do |r|
+      Plantpower::Recipe.new_from_index_page
+    end
+  end
+
 
   def self.scrape_index_page(index_url)
     links = []
-    html = open(index_url)
-    mcdougall = Nokogiri::HTML(html)
 
-    category = mcdougall.css(".break_ul li a").children.text
+    category = get_page.css(".break_ul li a").children.text
     category = category.split("\r\n")
     category.shift
     link = mcdougall.css(".break_ul li a")
@@ -28,9 +41,11 @@ class Scraper
     second_level
   end
 
+
   def self.scrape_recipe(url)
-    html = open(url)
-    list_item = Nokogiri::HTML(html)
+
+    list_item = Nokogiri::HTML(open(url))
+    Plantpower::Recipe.new_from_listing(list_item)
 
     recipe = {}
     ingred = []
