@@ -1,16 +1,13 @@
 class Plantpower::Recipe
   @@all = []
-  attr_accessor :name, :prep, :ingredients, :instructions
+  attr_accessor :name, :prep, :ingredients, :instructions, :url, :category_list
 
-  def self.new_from_listing(recipe)
-list_item = Nokogiri::HTML(open(url))
-
-    self.new(
-      r.css("h2").text,
-      "http://www.theworlds50best.com#{r.css("a").attribute("href").text}",
-      r.css("h3").text,
-      r.css(".position").text
-      )
+#sets category_list equal to scraped value from scrape_index_page
+#do not need to rescrape page, can access this list with .category_list
+#??????IS THIS IN THE RIGHT PLACE????????
+  def self.category_list
+    category_list = Plantpower::Scraper.scrape_categories
+    category_list
   end
 
   def initialize(name=nil, prep=nil, ingredients=nil, instruction=nil)
@@ -18,6 +15,10 @@ list_item = Nokogiri::HTML(open(url))
     @prep = prep
     @ingredients = ingredients
     @instructions = instructions
+    # @@all << self
+  end
+
+  def save
     @@all << self
   end
 
@@ -25,23 +26,21 @@ list_item = Nokogiri::HTML(open(url))
     @@all
   end
 
-  def name
-    @name = list_item.css("h2.rep-egg").children.text
-  end
 
-  def prep
-    @prep = list_item.css("h4.item_para").text
-  end
+#
+#   def self.new_from_listing(recipe)
+# list_item = Nokogiri::HTML(open(url))
+#
+#     self.new(
+#       r.css("h2").text,
+#       "http://www.theworlds50best.com#{r.css("a").attribute("href").text}",
+#       r.css("h3").text,
+#       r.css(".position").text
+#       )
+#   end
+#
 
-  def ingredients
-    list_item.css(".ingred").each { |l| ingred << l.text.gsub(/\t/, " ")  }
-    @ingredients = ingred
-  end
 
-  def instruction
-    list_item.css(".directions p").each {|i| instr << i.text}
-    @instructions = instr
-  end
 
 
 end

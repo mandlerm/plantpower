@@ -1,46 +1,40 @@
 class Plantpower::CLI
   MAIN_PAGE = "https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes"
 
-  @first_level
-
+  attr_accessor :categories
   def call
     puts
     puts "Welcome to the McDougall Recipe Collection"
+    category_setup
     display_categories
+    receive_input
   end
 
+  def category_setup
+    @categories = Plantpower::Recipe.category_list
+  end
 
-#HOW DO I PASS THIS VALUE BACK TO USE THIS TEST FOR MULTIPLE USER INPUTS?
-  def int_test(choice, length)
-    begin
-      if Integer(choice) && choice.to_i > 0 && choice.to_i <= length
-        true
-      else
-        false
-      end
-      rescue
-      false
+  def test_for_exit(input)
+    if input.include?("exit") || input.include?("q")
+      goodbye
     end
   end
 
-
-#STILL DOESN"T CHECK IF NUMBER IS AN OPTION -- NEED categories.length
   def display_categories
-    @first_level = Scraper.scrape_index_page(MAIN_PAGE)
-
-#why is there a leading index of " " ????  What to do about that?
-    length = @first_level.length
     puts "************* Recipe Categories *************"
-    @first_level.each_with_index do |item, index|
+    @categories.each_with_index do |item, index|
       puts "#{index + 1}. #{item[0]}"
     end
+
+    length = @categories.length
+
     puts
     puts "Enter the number for which category of recipes would you like to see?"
     print "> "
     choice = gets.chomp
-    if choice.include?("exit") || choice.include?("q")
-      goodbye
-    elsif !int_test(choice, length)
+    test_for_exit(choice)
+
+    if !int_test(choice, length)
           puts "^^^^^^^^^^^"
           puts "That is not a valid selection. Please try again"
           display_categories
@@ -51,9 +45,9 @@ class Plantpower::CLI
 
   def display_choices(food)
     food = food.to_i
-    key = @first_level.keys[food -1 ]
+    key = @categories.keys[food -1 ]
 
-    second_level = Scraper.scrape_category_page("#{MAIN_PAGE}/#{@first_level[key]}")
+    second_level = Plantpower::Scraper.scrape_category_page("#{MAIN_PAGE}/#{@categories[key]}")
     length = second_level.length
     puts "~~~~~~~~~~ #{key} ~~~~~~~~~~"
 
@@ -64,9 +58,9 @@ class Plantpower::CLI
     puts "Which recipe would you like to see?"
     print "> "
     choice  = gets.chomp
-    if choice.include?("exit") || choice.include?("q")
-      goodbye
-    elsif !int_test(choice, length)
+    test_for_exit(choice)
+
+    if !int_test(choice, length)
       puts "^^^^^^^^^^^"
       puts "That is not a valid selection. Please try again"
       display_choices(food)
@@ -79,21 +73,22 @@ class Plantpower::CLI
 
   def show_recipe(recipe_name, url)
 
-    recipe = Scraper.scrape_recipe("#{MAIN_PAGE}/#{url}")
-
-    puts "~~~~~~~~~~ #{recipe[:name]} ~~~~~~~~~~"
+    Plantpower::Scraper.scrape_recipe(recipe_name, "#{MAIN_PAGE}/#{url}")
+    # recipe = Scraper.scrape_recipe("#{MAIN_PAGE}/#{url}")
+binding.pry
+    puts "~~~~~~~~~~ #{recipe_name.name} ~~~~~~~~~~"
     puts
-    puts recipe[:prep]
+    puts recipe_name.prep
     puts
     puts "----------- INGREDIENTS ----------- "
-    puts recipe[:ingredients]
+    puts recipe_name.ingredients
     puts
     puts "************** DIRECTIONS **************"
-    puts recipe[:instructions]
+    puts recipe_name.instructions
     puts
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "See more at:"
-    puts "#{MAIN_PAGE}/#{url}"
+    puts recipe_name.url
     puts
     puts "Would you like to search for another recipe?"
     print "> "
@@ -108,6 +103,17 @@ class Plantpower::CLI
   def goodbye
     puts
     abort("Bon Appétit")
-    puts
+  end
+
+  def int_test(choice, length)
+    begin
+      if Integer(choice) && choice.to_i > 0 && choice.to_i <= length
+        true
+      else
+        false
+      end
+      rescue
+      false
+    end
   end
 end
