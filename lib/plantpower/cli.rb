@@ -35,7 +35,7 @@ class Plantpower::CLI
       puts "#{index + 1}. #{item[0]}"
     end
 
-    puts "Enter the number for which recipe category would you like to see?"
+    puts "Enter the number for which category of recipes would you like to see?"
     print "> "
     choice = gets.chomp
     if !int_test(choice, length)
@@ -67,8 +67,9 @@ class Plantpower::CLI
       puts "That is not a valid selection. Please try again"
       display_choices(food)
     else
-      binding.pry
-      extension = second_level[choice]
+      recipe_name = second_level.keys[choice.to_i - 1]
+      extension = second_level[recipe_name]
+      show_recipe(recipe_name, extension)
     end
   end
 
@@ -80,9 +81,8 @@ class Plantpower::CLI
 # 3. Display recipe information for that integer selection of that category
 
 
-  def show_recipe(type, number)
-    puts "#{type} #{number}"
-    puts
+  def show_recipe(recipe_name, url)
+    puts "#{recipe_name} - #{url}"
 
     #display the recipe item chosed
     # puts "#{recipe.name}"
