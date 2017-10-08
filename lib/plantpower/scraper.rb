@@ -29,7 +29,27 @@ class Scraper
   end
 
   def self.scrape_recipe(url)
+    html = open(url)
+    list_item = Nokogiri::HTML(html)
+
+    recipe = {}
+    binding.pry
+
+    recipe[:name] = list_item.css("h2.rep-egg").children.text
+    recipe[:prep] = list_item.css("h4.item_para").text
+    recipe[:ingredients] = list_item.css(".ingred-item").text
+    recipe[:instructions] = list_item.css(".directions")
+
+#list_item.css(".ingred")  each li class ingred-item
+#list_item.css(".ingred-item")
+#list_item.css(".directions").text  each br segment
+
   end
 end
+
+#display the recipe item chosed
+# puts "#{recipe.name}"
+# puts "#{recipe.time}   ------ #{recipe.servings}"
+# puts "#{recipe.instruction}"
 
 #https://www.drmcdougall.com/health/education/recipes/mcdougall-recipes/

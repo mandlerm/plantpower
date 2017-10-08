@@ -82,13 +82,13 @@ class Plantpower::CLI
 
 
   def show_recipe(recipe_name, url)
-    puts "#{recipe_name} - #{url}"
 
-    #display the recipe item chosed
-    # puts "#{recipe.name}"
-    # puts "#{recipe.time}   ------ #{recipe.servings}"
-    # puts "#{recipe.instruction}"
+    recipe = Scraper.scrape_recipe("#{MAIN_PAGE}/#{url}")
+
+  end
+
+
     # puts
     # puts "Bon Apetite"
-  end
+
 end
