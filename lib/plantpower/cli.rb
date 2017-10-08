@@ -92,7 +92,7 @@ class Plantpower::CLI
     puts "----------- INGREDIENTS ----------- "
     puts recipe[:ingredients]
     puts
-    puts "*************************"
+    puts "************** DIRECTIONS **************"
     puts recipe[:instructions]
     puts
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"

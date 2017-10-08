@@ -39,10 +39,11 @@ class Scraper
     recipe[:name] = list_item.css("h2.rep-egg").children.text
     recipe[:prep] = list_item.css("h4.item_para").text
 
-    list_item.css(".ingred").each { |l| ingred << l.text }
+binding.pry
+    list_item.css(".ingred").each { |l| ingred << l.text.gsub(/\t/, "   ")  }
     recipe[:ingredients] = ingred
 
-    list_item.css(".directions").each {|i| instr << i.text}
+    list_item.css(".directions p").each {|i| instr << i.text}
     recipe[:instructions] = instr
 
     recipe
