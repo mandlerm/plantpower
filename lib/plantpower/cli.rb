@@ -11,8 +11,7 @@ class Plantpower::CLI
   end
 
   def category_setup
-    Plantpower::Scraper.scrape_categories
-    @categories = Plantpower::Category.all
+    @categories = Plantpower::Recipe.category_list
   end
 
   def test_for_exit(input)
@@ -24,7 +23,7 @@ class Plantpower::CLI
   def display_categories
     puts "************* Recipe Categories *************"
     @categories.each_with_index do |item, index|
-      puts "#{index + 1}. #{item.name}"
+      puts "#{index + 1}. #{item[0]}"
     end
 
     length = @categories.length
@@ -46,13 +45,14 @@ class Plantpower::CLI
 
   def display_choices(food)
     food = food.to_i
-    cat = @categories[food -1 ]
-    Plantpower::Scraper.scrape_category_page("#{MAIN_PAGE}/#{cat.url}", cat)
-    length = cat.recipes.length
-    puts "~~~~~~~~~~ #{cat.name} ~~~~~~~~~~"
+    key = @categories.keys[food -1 ]
 
-    cat.recipes.each_with_index do |recipe, index|
-      puts "#{index + 1}. #{recipe.name}"
+    second_level = Plantpower::Scraper.scrape_category_page("#{MAIN_PAGE}/#{@categories[key]}")
+    length = second_level.length
+    puts "~~~~~~~~~~ #{key} ~~~~~~~~~~"
+
+    second_level.each_with_index do |items, index|
+      puts "#{index + 1}. #{items[0]}"
     end
     puts
     puts "Which recipe would you like to see?"
