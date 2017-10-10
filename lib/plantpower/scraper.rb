@@ -7,7 +7,7 @@ class Plantpower::Scraper
   end
 
   def self.scrape_categories
-    collection = []
+
     page = get_page
 
     list = page.css(".break_ul li a").children.text
@@ -17,24 +17,23 @@ class Plantpower::Scraper
     link = page.css(".break_ul li a")
     links = link.map { |l| l.attribute('href').value}
     Hash[list.zip(links)].each do |key, value|
-      collection << Plantpower::Category.new(key, value)
+      Plantpower::Category.new(key, value)
     end
   end
 
 
-  def self.scrape_category_page(url)
-    item_list = []
-    links = []
+  def self.scrape_category_page(url, category)
+
 
     html = open(url)
     choices = Nokogiri::HTML(html)
 
-    list = choices.css(".category_list li a")
-    list.each { |l| item_list << l.text }
-
-    list.each { |l| links << l.attribute('href').value}
-    second_level = Hash[item_list.zip(links)]
-    second_level
+    choices.css(".category_list li").each do |rec|
+      recipe = Plantpower::Recipe.new
+      recipe.name = rec.css("a").text
+      recipe.url = rec.css("a").attribute('href').value
+      category.add_recipe(recipe)
+    end
   end
 
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require 'plantpower'
+require_relative '../lib/plantpower'
 
 
 Plantpower::CLI.new.call
