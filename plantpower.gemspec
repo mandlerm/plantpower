@@ -5,7 +5,7 @@ require 'plantpower/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "plantpower"
-  spec.version       = Plantpower::VERSION
+  spec.version       = Plantpower::0.1.1
   spec.authors       = ["'Melissa Amaya'"]
   spec.email         = ["'amaya.melissa@gmail.com'"]
 
