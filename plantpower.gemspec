@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "plantpower"
   spec.version       = "0.1.0"
   spec.authors       = ["'Melissa Amaya'"]
-  spec.email         = ["'amaya.melissa@gmail.com'"]
+  spec.email         = "amaya.melissa@gmail.com"
 
-  spec.summary       = ["A Nokogiri scraper of the Plant Based, McDougall recipe website."]
-  spec.description   = ["Allows user to search for recipies by cuisine."]
+  spec.summary       = "A Nokogiri scraper of the Plant Based, McDougall recipe website."
+  spec.description   = "Allows user to search for recipies by cuisine."
   spec.homepage      = "https://github.com/mandlerm/plantpower"
   spec.license       = "MIT"
   spec.executables << "plantpower"
