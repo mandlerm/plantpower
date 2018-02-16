@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Melissa Amaya'"]
   spec.email         = ["'amaya.melissa@gmail.com'"]
 
-  spec.summary       = ["place holder"]
-  spec.description   = ["place holder"]
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = ["A Nokogiri scraper of the Plant Based, McDougall recipe website."]
+  spec.description   = ["Allows user to search for recipies by cuisine."]
+  spec.homepage      = "https://github.com/mandlerm/plantpower"
   spec.license       = "MIT"
   spec.executables << "plantpower"
 
